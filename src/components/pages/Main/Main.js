@@ -38,7 +38,7 @@ const Templates = () => {
       <StationsListStyle>
         <Spin
           spinning={!stations}
-          indicator={<LoadingOutlined style={{ margin: '50px 0px 0px -30px', fontSize: 60 }} spin />}
+          indicator={<LoadingOutlined style={{ margin: '150px 0px 0px -30px', fontSize: 60 }} spin />}
         >
           <List
             locale={{ emptyText: ' ' }}

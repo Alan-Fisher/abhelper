@@ -1,10 +1,10 @@
 /* eslint-disable  max-len */
-// import { message } from 'antd'
+import { message } from 'antd'
 import {
   observable, configure, makeObservable,
 } from 'mobx'
 
-import { pageExample } from './pageExample'
+// import { pageExample } from './pageExample'
 
 configure({ enforceActions: 'observed' })
 
@@ -42,13 +42,14 @@ export class StationsModel {
   }
 
   async getABPageHtml() {
-    // const baseUrl = process.env.REACT_APP_BASE_URL
-    return pageExample
-    // return fetch(`${baseUrl}/ab`)
-    //   .then((response) => response.text()
-    //     .then((html) => html)
-    //     .catch((e) => message.error(e)))
-    //   .catch((e) => message.error(e))
+    const baseUrl = process.env.REACT_APP_BASE_URL
+
+    // return pageExample
+    return fetch(`${baseUrl}/ab`)
+      .then((response) => response.text()
+        .then((html) => html)
+        .catch((e) => message.error(e)))
+      .catch((e) => message.error(e))
   }
 
   parseStationsFromHtml(minimizedHtml) {
