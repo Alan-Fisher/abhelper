@@ -37,8 +37,8 @@ export class StationsModel {
   }
 
   getStations() {
-    setTimeout(() => this.getABPageHtml() // TODO: remove timeout!
-      .then((html) => this.parseStationsFromHtml(html)), 300)
+    this.getABPageHtml()
+      .then((html) => this.parseStationsFromHtml(html))
   }
 
   async getABPageHtml() {
