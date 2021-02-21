@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { LoadingOutlined, StarFilled, StopTwoTone } from '@ant-design/icons'
+import {
+  LoadingOutlined, ReloadOutlined, StarFilled, StopTwoTone,
+} from '@ant-design/icons'
 import { observer } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 import { func, shape } from 'prop-types'
@@ -22,17 +24,41 @@ const Templates = () => {
 
   const { stations } = StationsModel
 
+  const reloadStations = () => { StationsModel.getStations() }
+
   const filteredStations = stations
     ?.filter(({ address, code }) => (address.includes(searchQuery) || code.toString().includes(searchQuery)))
 
   return (
     <MainStyle>
       <PageHeaderStyle>
+        {/* <Space
+          style={{ width: '100%', justifyContent: 'center' }}
+        >
+          <Title
+            style={{ marginLeft: '-3px' }}
+            code
+            level={3}
+            type="secondary"
+          >
+            AB Helper
+
+          </Title>
+          <Title level={2}>🚲</Title>
+        </Space> */}
         <Input
+          allowClear
           onChange={({ target }) => setSearchQuery(target.value)}
           value={searchQuery}
           size="large"
           placeholder="Поиск..."
+          addonAfter={(
+            <ReloadOutlined
+              onClick={reloadStations}
+              style={{ fontSize: '18px', marginTop: '5px' }}
+            />
+          )}
+          defaultValue="mysite"
         />
       </PageHeaderStyle>
       <StationsListStyle>
@@ -71,13 +97,13 @@ const Templates = () => {
                     </Title>
                   </Badge>
                   <Space size={3} direction="vertical">
-                    <Text type="secondary">
+                    <Text type="secondary" style={{ fontSize: '16px' }}>
                       {address}
                       {isFavorite && (
-                        <StarFilled style={{ color: '#f4df00', margin: '3px' }} />
+                        <StarFilled style={{ color: '#f4df00', margin: '5px' }} />
                       )}
                       {isInactive && (
-                        <StopTwoTone twoToneColor="red" style={{ margin: '3px' }} />
+                        <StopTwoTone twoToneColor="red" style={{ margin: '5px' }} />
                       )}
                     </Text>
                     <Text type="secondary">

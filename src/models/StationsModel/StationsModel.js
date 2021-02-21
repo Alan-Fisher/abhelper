@@ -37,6 +37,7 @@ export class StationsModel {
   }
 
   getStations() {
+    this.set('stations', undefined)
     this.getABPageHtml()
       .then((html) => this.parseStationsFromHtml(html))
   }
